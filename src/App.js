@@ -24,7 +24,7 @@ class App extends Component
   {
     return (
       <Wrapper>
-        <Title>Clicky Game</Title>
+        <Title> Boondocks Memory Game </Title>
         {this.state.friends.map( friend => (
           <FriendCard
 
