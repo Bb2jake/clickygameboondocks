@@ -6,7 +6,7 @@ import boondocks from "./boondocks.json";
 
 class App extends Component
 {
-  // Setting this.state.friends to the friends json array
+  // Setting this.state. for booondocks and score 
   state = {
     boondocks,
     score:  0
