@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import FriendCard from "./src/components/FriendCard";
-import Wrapper from "./src/components/Wrapper";
-import Title from "./src/components/Title";
-import boondocks from "./src/boondocks.json";
+import FriendCard from "./components/FriendCard";
+import Wrapper from "./components/Wrapper";
+import boondocks from "./boondocks.json";
+import Header from "./components/Header"
 
 class App extends Component
 {
   // Setting this.state. for booondocks and score 
   state = {
-    boondocks,
-    score:  0
+    boondocks: App.getBoondocksCopy(),
+    score: 0,
+    highScore: 0
   };
 
   imageClicked = id =>
@@ -36,15 +37,17 @@ class App extends Component
     {
       // game over
       alert( "Game Over" )
+      this.setHighScore(this.state.score)
       this.restartGame()
     } else
     {
       // @ts-ignore
       boondock.clicked = true
-      this.setState({score: +1})
+      this.setState( { score: this.state.score + 1 } )
       this.shuffle()
+      console.log( this.state.score )
     }
-    
+
   };
 
   shuffle = () =>
@@ -64,14 +67,25 @@ class App extends Component
 
   restartGame = () =>
   {
-    // reset score = 0
+    
 
-    this.setState( { boondocks } )
-    this.setState({score: 0})
+    this.setState( { boondocks: App.getBoondocksCopy() } )
+    this.setState( { score: 0 } )
+    
 
-    this.shuffle()
+
+  }
 
 
+  setHighScore = (currentScore) => {
+    if (currentScore > this.state.highScore) {
+      this.setState({highScore: currentScore})
+    }
+  }
+
+
+  static getBoondocksCopy = () => {
+    return JSON.parse(JSON.stringify(boondocks))
   }
 
 
@@ -82,7 +96,12 @@ class App extends Component
   {
     return (
       <Wrapper>
-        <Title> Boondocks Memory Game </Title>
+        <Header
+          score={this.state.score}
+          highScore={this.state.highScore}>
+
+        </Header>
+
         {this.state.boondocks.map( boondock => (
           <FriendCard
 
