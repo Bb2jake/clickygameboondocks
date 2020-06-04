@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import FriendCard from "./components/FriendCard";
-import Wrapper from "./components/Wrapper";
-import Title from "./components/Title";
-import boondocks from "./boondocks.json";
+import FriendCard from "./src/components/FriendCard";
+import Wrapper from "./src/components/Wrapper";
+import Title from "./src/components/Title";
+import boondocks from "./src/boondocks.json";
 
 class App extends Component
 {
